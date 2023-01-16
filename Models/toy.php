@@ -1,6 +1,6 @@
 <?php
 require_once __DIR__ . "/Category.php";
-class Food extends Category
+class Toy extends Category
 {
   protected string $typeName = "Toy";
   protected string $typeIcon = " fa-baseball";
