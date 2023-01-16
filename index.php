@@ -24,6 +24,8 @@ $product = new Category("trippa essiccata","https://shop-cdn-m.mediazs.com/bilde
 var_dump($product);
 $product = new Food("trippa essiccata","https://shop-cdn-m.mediazs.com/bilder/rocco/trippa/verde/di/manzo/7/800/rocco_driedchews_greentripe_500g_1000x1000_7.jpg","rocco","snack appetitoso e puzzolente","3","100","20","cane","fa-dog","masticativo","horse",null,null,true,true);
 var_dump($product);
+$product = new Food("Dog Activity Solitaire","https://arcaplanet.vtexassets.com/arquivos/ids/220073/trixie-dog-activity-cane-solitaire.jpg?v=1759972606","trixie","Dog activity Solitaire è un gioco d'intelligenza per il tuo cane","8",14.70,35,"cane","fa-dog",null,"L",null,null,true);
+var_dump($product);
 
 ?>
 

@@ -225,4 +225,24 @@ class Food extends Category
 
     return $this;
   }
+
+  /**
+   * Get the value of typeIcon
+   */ 
+  public function getTypeIcon()
+  {
+    return $this->typeIcon;
+  }
+
+  /**
+   * Set the value of typeIcon
+   *
+   * @return  self
+   */ 
+  public function setTypeIcon($typeIcon)
+  {
+    $this->typeIcon = $typeIcon;
+
+    return $this;
+  }
 }
