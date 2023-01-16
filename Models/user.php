@@ -1,5 +1,4 @@
 <?php
-
 class User {
   protected string $name;
   protected string $surname;
