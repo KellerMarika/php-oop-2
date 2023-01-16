@@ -1,11 +1,12 @@
 <?php
+
 class User {
   protected string $name;
   protected string $surname;
 
   protected DateTime $birthDate;
 
-  protected array $orders;
+  protected array $orders=[];
 
 /* COSTRUTTORE */
 function __construct($_name,$_surname, $_birthDate){

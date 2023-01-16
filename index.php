@@ -3,12 +3,43 @@
 require_once "./Models/Product.php";
 require_once "./Models/Category.php";
 require_once "./Models/User.php";
+require_once "./api/addUser.php";
+
 
 
 $user= new User("Marika","Keller", "02-11-1992");
-var_dump($user);
+//var_dump($user);
+
+
+$usersList = json_decode(file_get_contents("dbJson/users.json"), true);
+//var_dump($usersList);
+
+$newUser = [
+  // usiamo lo spread per aggiungere tutti i dati dell'array.
+  // questo non è consigliato visto che non posso escludere chiavi potenzialmente pericolose.
+  //...$_POST,
+  "title" => "title",
+  "content" => "content",
+  "category" => "generic",
+  "createdAt" => date('Y-m-d H:i:s'),
+  "updatedAt" => "",
+  "id" => uniqid()
+];
+
+$usersList[] = $newUser;
+
+// ricodifichiamo in json
+$jsonString = json_encode($usersList, JSON_PRETTY_PRINT);
+
+// salviamo del database il nuovo array
+file_put_contents("../database.json", $jsonString);
+
+//header("Content-Type: application/json");
+
+
+
 $product = new Product("trippa essiccata","https://shop-cdn-m.mediazs.com/bilder/rocco/trippa/verde/di/manzo/7/800/rocco_driedchews_greentripe_500g_1000x1000_7.jpg","rocco","snack appetitoso e puzzolente","3","100","20");
-var_dump(($product));
+//var_dump(($product));
 
 /* con le classi l'encode non funziona______________________________!!!!!! */
 /* 
