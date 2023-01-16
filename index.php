@@ -6,8 +6,13 @@ ini_set('html_errors', false);
 require_once "./Models/Product.php";
 require_once "./Models/Category.php";
 require_once "./Models/User.php";
+require_once "./Models/Address.php";
 require_once "encodeJsonFunction.php";
 
+$address= new Address("via Giuseppe di vittorio 7","41125","Modena","italy");
+var_dump($address);
+$user= new User("Marika","Keller","marikakeller92@gmail.com", "02-11-1992",$address->getAssociativeArray());
+var_dump($user);
 //var_dump(json_decode(file_get_contents("dbJson/users.json"),true));
 
 $product = new Product("trippa essiccata","https://shop-cdn-m.mediazs.com/bilder/rocco/trippa/verde/di/manzo/7/800/rocco_driedchews_greentripe_500g_1000x1000_7.jpg","rocco","snack appetitoso e puzzolente","3","100","20");

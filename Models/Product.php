@@ -41,8 +41,22 @@ class Product
 
     return $this;
   }
-  
 
+
+  
+  /*** FUNCTION GET FULL NAME ***/ 
+  public function getAssociativeArray(){
+
+    $associatedArray=[];
+      foreach ($this as $key => $value) {
+  
+        //var_dump($key, $value);
+        $associatedArray[$key] = $value;
+      }
+      return $associatedArray;
+  }
+
+  
   /*** GETTER & SETTER ***/
 
   /**
