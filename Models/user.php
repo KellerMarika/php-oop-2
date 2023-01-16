@@ -22,7 +22,7 @@ class User
     $this->email = $_email;
     $this->setBirth_date($_birthDate);
     $this->setAddress($_address);
-   
+
   }
 
   /*** FUNCTION GET ASSOCIATIVE ARRAY ***/
@@ -90,6 +90,28 @@ class User
     return $this;
   }
 
+
+  /**
+   * Get the value of email
+   */
+  public function getEmail()
+  {
+    return $this->email;
+  }
+
+  /**
+   * Set the value of email
+   *
+   * @return  self
+   */
+  public function setEmail($_email)
+  {
+    $this->email = $_email;
+
+    return $this;
+  }
+
+
   /**
    * Get the value of birth_date
    */
@@ -111,22 +133,21 @@ class User
   }
 
   /**
-   * Get the value of email
-   */
-  public function getEmail()
+   * Get the value of address
+   */ 
+  public function getAddress()
   {
-    return $this->email;
+    return $this->address;
   }
 
   /**
-   * Set the value of email
+   * Set the value of address
    *
    * @return  self
-   */
-  public function setEmail($_email)
+   */ 
+  public function setAddress($_address)
   {
-    $this->email = $_email;
-
+    $this->address =  $_address;
     return $this;
   }
 
@@ -172,23 +193,4 @@ class User
     return $this;
   }
 
-  /**
-   * Get the value of address
-   */ 
-  public function getAddress()
-  {
-    return $this->address;
-  }
-
-  /**
-   * Set the value of address
-   *
-   * @return  self
-   */ 
-  public function setAddress($_address)
-  {
-    $this->address = $_address;
-
-    return $this;
-  }
 }
