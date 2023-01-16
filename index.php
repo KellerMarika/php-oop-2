@@ -8,8 +8,7 @@ require_once "./Models/Category.php";
 require_once "./Models/User.php";
 require_once "encodeJsonFunction.php";
 
-
-$user= new User("Marika","Keller", "02-11-1992");
+//var_dump(json_decode(file_get_contents("dbJson/users.json"),true));
 
 $product = new Product("trippa essiccata","https://shop-cdn-m.mediazs.com/bilder/rocco/trippa/verde/di/manzo/7/800/rocco_driedchews_greentripe_500g_1000x1000_7.jpg","rocco","snack appetitoso e puzzolente","3","100","20");
 

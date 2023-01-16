@@ -1,12 +1,12 @@
 <?php
+require_once "./Models/Product.php";
+require_once "./Models/Category.php";
+require_once "./Models/User.php";
 require_once "encodeJsonFunction.php";
 
-$newUser = [
-  "title" => "title",
-  "content" => "content",
-  "category" => "generic",
-  "createdAt" => date('Y-m-d H:i:s'),
-  "updatedAt" => "",
-  "id" => uniqid()
-];
-encodeJsonWOW($newUser, "dbJson/users.json"); 
+$user= new User("Marika","Keller", "02-11-1992");
+encodeJsonWOW($user->getAssociativeArray(), "dbJson/users.json"); 
+$user= new User("Piero","Pippo", "15-05-1989");
+encodeJsonWOW($user->getAssociativeArray(), "dbJson/users.json"); 
+$user= new User("Carolina","VaInPanchina", "07-12-1998");
+encodeJsonWOW($user->getAssociativeArray(), "dbJson/users.json"); 

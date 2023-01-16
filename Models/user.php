@@ -23,12 +23,6 @@ public function getAssociativeArray(){
       $associatedArray[$key] = $value;
     }
     return $associatedArray;
-
-    
-   
-
-    
-
 }
 
 
