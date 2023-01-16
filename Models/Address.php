@@ -4,25 +4,21 @@ class Address
 {
   
   protected string $residence;
-  protected int $zipCode;
   protected string $city;
-  
-
+  protected int $zipCode;
   protected string $country;
  
- 
-
-  function __construct( $_residence,$_zipCode,$_city, $_country)
+  function __construct( $_residence,$_city, $_zipCode, $_country)
   {
     $this->residence = ($_residence);
-    $this->zipCode = ($_zipCode);
     $this->setCity($_city);
+    $this->zipCode = ($_zipCode);
     $this->country = ($_country);
   }
 
   public function getFullAddress()
   {
-    return $this->residence. " " . $this->getSurname();
+    return $this->residence . ", " . $this->city.", " . $this->zipCode .", ". $this->country;
   }
 
   /*** FUNCTION GET ASSOCIATIVE ARRAY ***/

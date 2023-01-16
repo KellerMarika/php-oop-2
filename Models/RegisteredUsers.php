@@ -2,6 +2,9 @@
 require_once __DIR__ . "/User.php";
 
 class RegisteredUser extends User{
+
+
+  
   private int $ReservedtotalDiscount = 20;
   private array $wishlist;
 
