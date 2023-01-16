@@ -4,26 +4,47 @@ class Food extends Category
 {
   protected string $typeName = "Food";
   protected string $typeIcon = "fa-bowl-food";
+  protected string $consistency = "dry"; //select array
+  protected string $taste = "chicken"; //select array
+  protected string|null $size = null; //select array
+  protected bool $puppy = false;
   protected bool $monoprotein = false;
   protected bool $grainfree = false;
   protected bool $diet = false;
-  protected bool $puppy = false;
-  protected string|null $size =null;  //select array
-  protected string $taste = "pollo"; //select array
-  protected string $consistency = "secco"; //select array
 
-  function __construct($_name, $_img, $_brand, $_overview, $_qta, $_price, $_discountPercentage, $_categoryName, $_categoryIcon, $_monoprotein,$_grainfree,$_diet,$_puppy,$_size=null,$_taste=null,$_consistency=null)
+
+
+
+  function __construct($_name, $_img, $_brand, $_overview, $_qta, $_price, $_discountPercentage, $_categoryName, $_categoryIcon, $_consistency = null, $_taste = null, $_size = null, $_puppy = null, $_monoprotein = null, $_grainfree = null, $_diet = null)
   {
 
-    parent::__construct($_name, $_img, $_brand, $_overview, $_qta, $_price, $_discountPercentage,$_categoryName,$_categoryIcon);
-    
-    $this->setMonoprotein($_monoprotein);
-    $this->setGrainfree($_grainfree);
-    $this->setDiet($_diet);
-    $this->setPuppy($_puppy);
-    $this->setSize($_size);
-    $this->setTaste($_taste);
-    $this->setConsistency($_consistency);
+    parent::__construct($_name, $_img, $_brand, $_overview, $_qta, $_price, $_discountPercentage, $_categoryName, $_categoryIcon);
+
+    if ($_consistency) {
+      $this->setConsistency($_consistency);
+    }
+    if ($_taste) {
+      $this->setTaste($_taste);
+    }
+    if ($_size) {
+      $this->setSize($_size);
+    }
+    if ($_puppy) {
+      $this->setPuppy($_puppy);
+    }
+    if ($_monoprotein) {
+      $this->setMonoprotein($_monoprotein);
+    }
+    if ($_grainfree) {
+      $this->setGrainfree($_grainfree);
+    }
+    if ($_diet) {
+      $this->setDiet($_diet);
+    }
+
+
+
+
   }
 
 
@@ -46,7 +67,7 @@ class Food extends Category
 
   /**
    * Get the value of type
-   */ 
+   */
   public function getType()
   {
     return $this->type;
@@ -56,7 +77,7 @@ class Food extends Category
    * Set the value of type
    *
    * @return  self
-   */ 
+   */
   public function setType($type)
   {
     $this->type = $type;
@@ -66,7 +87,7 @@ class Food extends Category
 
   /**
    * Get the value of monoprotein
-   */ 
+   */
   public function getMonoprotein()
   {
     return $this->monoprotein;
@@ -76,7 +97,7 @@ class Food extends Category
    * Set the value of monoprotein
    *
    * @return  self
-   */ 
+   */
   public function setMonoprotein($monoprotein)
   {
     $this->monoprotein = $monoprotein;
@@ -86,7 +107,7 @@ class Food extends Category
 
   /**
    * Get the value of grainfree
-   */ 
+   */
   public function getGrainfree()
   {
     return $this->grainfree;
@@ -96,7 +117,7 @@ class Food extends Category
    * Set the value of grainfree
    *
    * @return  self
-   */ 
+   */
   public function setGrainfree($grainfree)
   {
     $this->grainfree = $grainfree;
@@ -106,7 +127,7 @@ class Food extends Category
 
   /**
    * Get the value of diet
-   */ 
+   */
   public function getDiet()
   {
     return $this->diet;
@@ -116,7 +137,7 @@ class Food extends Category
    * Set the value of diet
    *
    * @return  self
-   */ 
+   */
   public function setDiet($diet)
   {
     $this->diet = $diet;
@@ -126,7 +147,7 @@ class Food extends Category
 
   /**
    * Get the value of puppy
-   */ 
+   */
   public function getPuppy()
   {
     return $this->puppy;
@@ -136,16 +157,16 @@ class Food extends Category
    * Set the value of puppy
    *
    * @return  self
-   */ 
+   */
   public function setPuppy($puppy)
   {
     $this->puppy = $puppy;
 
     return $this;
   }
-    /**
+  /**
    * Get the value of size
-   */ 
+   */
   public function getSize()
   {
     return $this->size;
@@ -155,7 +176,7 @@ class Food extends Category
    * Set the value of size
    *
    * @return  self
-   */ 
+   */
   public function setSize($size)
   {
     $this->size = $size;
@@ -165,7 +186,7 @@ class Food extends Category
 
   /**
    * Get the value of taste
-   */ 
+   */
   public function getTaste()
   {
     return $this->taste;
@@ -175,7 +196,7 @@ class Food extends Category
    * Set the value of taste
    *
    * @return  self
-   */ 
+   */
   public function setTaste($taste)
   {
     $this->taste = $taste;
@@ -187,7 +208,7 @@ class Food extends Category
 
   /**
    * Get the value of consistency
-   */ 
+   */
   public function getConsistency()
   {
     return $this->consistency;
@@ -197,7 +218,7 @@ class Food extends Category
    * Set the value of consistency
    *
    * @return  self
-   */ 
+   */
   public function setConsistency($consistency)
   {
     $this->consistency = $consistency;

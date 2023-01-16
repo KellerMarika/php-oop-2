@@ -22,7 +22,7 @@ $product = new Product("trippa essiccata","https://shop-cdn-m.mediazs.com/bilder
 var_dump($product);
 $product = new Category("trippa essiccata","https://shop-cdn-m.mediazs.com/bilder/rocco/trippa/verde/di/manzo/7/800/rocco_driedchews_greentripe_500g_1000x1000_7.jpg","rocco","snack appetitoso e puzzolente","3","100","20","gatto","fa-cat");
 var_dump($product);
-$product = new Food("trippa essiccata","https://shop-cdn-m.mediazs.com/bilder/rocco/trippa/verde/di/manzo/7/800/rocco_driedchews_greentripe_500g_1000x1000_7.jpg","rocco","snack appetitoso e puzzolente","3","100","20","gatto","fa-dog","true","false","false","false","xl","anatra","secco");
+$product = new Food("trippa essiccata","https://shop-cdn-m.mediazs.com/bilder/rocco/trippa/verde/di/manzo/7/800/rocco_driedchews_greentripe_500g_1000x1000_7.jpg","rocco","snack appetitoso e puzzolente","3","100","20","cane","fa-dog","masticativo","horse",null,null,true,true);
 var_dump($product);
 
 ?>
