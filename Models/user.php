@@ -2,9 +2,7 @@
 class User {
   protected string $name;
   protected string $surname;
-
-  protected DateTime $birthDate;
-
+  protected array $birthDate;
   protected array $orders=[];
 
 /* COSTRUTTORE */
@@ -15,6 +13,29 @@ function __construct($_name,$_surname, $_birthDate){
   $this->setBirth_date($_birthDate);
 }
 
+/*** FUNCTION GET FULL NAME ***/ 
+public function getAssociativeArray(){
+
+  $associatedArray=[];
+    foreach ($this as $key => $value) {
+
+      //var_dump($key, $value);
+      $associatedArray[$key] = $value;
+    }
+    return $associatedArray;
+
+    
+   
+
+    
+
+}
+
+
+
+
+
+/*** FUNCTION GET FULL NAME ***/ 
 public function getFullName(){
   return $this->getName() . " " .$this->getSurname();
 }
@@ -76,7 +97,7 @@ public function getFullName(){
    */ 
   public function setBirth_date($_birthDate)
   {
-    $this->birthDate = new DateTime($_birthDate);
+    $this->birthDate = (array) new DateTime($_birthDate);
 
     return $this;
   }
