@@ -18,6 +18,9 @@ require_once "./Models/REgisteredUser.php";
 /* functions */
 require_once "encodeJsonFunction.php";
 
+/* Arrays */
+require_once "objectsArrays.php";
+
 
 /* api */
 $prdoductList = json_decode(file_get_contents("dbJson/stock.json"), true);
@@ -96,43 +99,43 @@ $prdoductList = json_decode(file_get_contents("dbJson/stock.json"), true);
     <div class="container">
 
       <div class="row row-cols-5 flex-wrap h-100 mt-5">
-        <?php foreach ($prdoductList as $product) { ?>
-
+        <?php foreach ($stockList as $i => $product) { ?>
 
           <div class="col p-2">
             <div class="product-card rounded-1 position-relative">
               <div class="poster-card position-absolute top-0 start-0 end-0 bottom-0 w-100 h-100">
                 <div class="position-relative">
-                  <img class="img-fluid" src="<?php echo $product["img"] ?>" alt="  <?php echo $product["name"] ?> ">
+                  <img class="img-fluid" src="<?php echo $product->getImg() ?>"
+                      alt="  <?php echo $product->getName() ?> ">
                   <i
-                      class='position-absolute end-0 bottom-0 fa-solid p-2 <?php echo ($product["CategoryIcon"]) ?? "" ?>'></i>
+                      class='position-absolute end-0 bottom-0 fa-solid p-2 <?php echo ($product->getCategpry()->getIcon()) ?? "" ?>'></i>
 
                 </div>
 
                 <h5 class="title ">
-                  <?php echo $product["name"] ?>
+                  <?php echo $product->getName() ?>
                 </h5>
 
                 <div class="card-infos px-2">
                   <p class="brand text-uppercase small ">
-                    <?php echo $product["brand"] ?>
+                    <?php echo $product->getBrand() ?>
                   </p>
 
                   <ul>
-                    <li class="small <?php echo ($product["inStock"]) ? "text-success" : "text-danger" ?> ">
+                    <li class="small <?php echo ($product->getInStock()) ? "text-success" : "text-danger" ?> ">
                       Disponibilità:
-                      <?php echo ($product["inStock"]) ? $product["inStock"] . "pezzi" : "esaurito" ?></li>
+                      <?php echo ($product->getInStock()) ? $product->getInStock() . "pezzi" : "esaurito" ?></li>
                   </ul>
 
                   <div class="d-flex align-items-center justify-content-between py-2">
                     <span
-                        class=' "small" <?php echo ($product["discountPercentage"]) ? "text-decoration-line-through" : "" ?>'>
-                      <?php echo ($product["price"]) . "€"; ?>
+                        class=' "small" <?php echo ($product->getDiscountPercentage()) ? "text-decoration-line-through" : "" ?>'>
+                      <?php echo ($product->getPrice()) . "€"; ?>
                     </span>
 
-                    <?php echo ($product["discountPercentage"]) ? '<span class="text-danger fw-bolder fs-5">' . $product["finalprice"] . '€</span>' : "" ?>
+                    <?php echo ($product->getDiscountPercentage()) ? '<span class="text-danger fw-bolder fs-5">' . $product->getfinalprice() . '€</span>' : "" ?>
 
-                    <?php echo ($product["discountPercentage"]) ? '<span class="text-light fw-bolder rounded-5 bg-danger px-1"> - ' . $product["discountPercentage"] . '%</span>' : "" ?>
+                    <?php echo ($product->getDiscountPercentage()) ? '<span class="text-light fw-bolder rounded-5 bg-danger px-1"> - ' . $product->getDiscountPercentage() . '%</span>' : "" ?>
                   </div>
 
                   <div class="card-options d-flex justify-content-between">
@@ -146,46 +149,18 @@ $prdoductList = json_decode(file_get_contents("dbJson/stock.json"), true);
 
               <div class="card-info position-absolute bg-light align-items-baseline">
                 <div class="d-flex">
-                  <i class=' fa-solid  <?php echo ($product["typeIcon"]) ?? "" ?>'></i>
+
                   <h5 class="title ps-3 ">
-                    <?php echo $product["name"] ?>
+                    <?php echo $product->getName() ?>
                   </h5>
                 </div>
 
                 <p>
-                  <?php echo $product["overview"] ?>
+                  <?php echo $product->getOverview() ?>
                 </p>
 
 
-                <?php if ($product["typeName"]) { ?>
-
-
-                  <?php if ($product["typeName"] === "Food") { ?>
-
-                    <div class="<?php echo $product["typeName"] ?>">
-
-                      <span>size: <?php $product["size"] ?></span>
-                    </div>
-
-                  <?php } else if ($product["typeName"] === "Toy") { ?>
-
-                      <div class="<?php echo $product["typeName"] ?>">
-                        <span>size: <?php $product["size"] ?></span>
-
-                      </div>
-
-                  <?php } else if ($product["typeName"] === "Bed") { ?>
-
-                        <div class="<?php echo $product["typeName"] ?>">
-                          <span>size: <?php $product["size"] ?></span>
-
-
-                        </div>
-                  <?php } ?>
-                <?php } else { ?>
-
-<div></div>
-                <?php } ?>
+        
 
               </div>
 

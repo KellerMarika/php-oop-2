@@ -1,0 +1,10 @@
+[
+    {
+        "name": "cat",
+        "icon": "fa-cat"
+    },
+    {
+        "name": "dog",
+        "icon": "fa-dog"
+    }
+]

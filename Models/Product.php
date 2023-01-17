@@ -3,6 +3,7 @@ require_once __DIR__ . "/Category.php";
 class Product
 {
 
+  private $id;
   protected string $name;
   protected string $img;
   protected string $brand;
@@ -12,27 +13,30 @@ class Product
   protected $price;
   protected float $discountPercentage = 0.0;
   protected $finalprice;
-  protected int $buied=0;
+  protected int $buied = 0;
   protected bool $topSelled = false;
-  protected Category $category;
-  
+  protected Category|null $category;
 
 
-/* COSTRUTTORE */
-  function __construct($_name,$_img,$_brand,$_overview,$_qta,$_price,$_discountPercentage, $_category)
+
+  /* COSTRUTTORE */
+  function __construct($_name, $_img, $_brand, $_overview, $_qta, $_price, $_discountPercentage, $_category = null)
   {
-  $this->name=$_name ;
-  $this->img = $_img;
-  $this->brand = $_brand;
-  $this->overview=$_overview;
-  $this->qta =$_qta;
-  $this->setInStock();
-  $this->setPrice($_price);
-  $this->discountPercentage = $_discountPercentage;
-  $this->setFinalprice();
+    $this->setId();
+    $this->name = $_name;
+    $this->img = $_img;
+    $this->brand = $_brand;
+    $this->overview = $_overview;
+    $this->qta = $_qta;
+    $this->setInStock();
+    $this->setPrice($_price);
+    $this->discountPercentage = $_discountPercentage;
+    $this->setFinalprice();
     $this->setCategpry($_category);
   }
-  /**** METHODS ****/  
+
+
+  /**** METHODS ****/
 
   public function jsonSerialize()
   {
@@ -40,31 +44,32 @@ class Product
   }
   public function decrementQta()
   {
-    $this->qta --;
+    $this->qta--;
 
     return $this;
   }
 
 
-  
-  /*** FUNCTION GET FULL NAME ***/ 
-  public function getAssociativeArray(){
 
-    $associatedArray=[];
-      foreach ($this as $key => $value) {
-  
-        //var_dump($key, $value);
-        $associatedArray[$key] = $value;
-      }
-      return $associatedArray;
+  /*** FUNCTION GET FULL NAME ***/
+  public function getAssociativeArray()
+  {
+
+    $associatedArray = [];
+    foreach ($this as $key => $value) {
+
+      //var_dump($key, $value);
+      $associatedArray[$key] = $value;
+    }
+    return $associatedArray;
   }
 
-  
+
   /*** GETTER & SETTER ***/
 
   /**
    * Get the value of name
-   */ 
+   */
   public function getName()
   {
     return $this->name;
@@ -74,7 +79,7 @@ class Product
    * Set the value of name
    *
    * @return  self
-   */ 
+   */
   public function setName($_name)
   {
     $this->name = $_name;
@@ -84,7 +89,7 @@ class Product
 
   /**
    * Get the value of img
-   */ 
+   */
   public function getImg()
   {
     return $this->img;
@@ -94,7 +99,7 @@ class Product
    * Set the value of img
    *
    * @return  self
-   */ 
+   */
   public function setImg($_img)
   {
     $this->img = $_img;
@@ -104,7 +109,7 @@ class Product
 
   /**
    * Get the value of brand
-   */ 
+   */
   public function getBrand()
   {
     return $this->brand;
@@ -114,7 +119,7 @@ class Product
    * Set the value of brand
    *
    * @return  self
-   */ 
+   */
   public function setBrand($_brand)
   {
     $this->brand = $_brand;
@@ -124,7 +129,7 @@ class Product
 
   /**
    * Get the value of overview
-   */ 
+   */
   public function getOverview()
   {
     return $this->overview;
@@ -134,7 +139,7 @@ class Product
    * Set the value of overview
    *
    * @return  self
-   */ 
+   */
   public function setOverview($_overview)
   {
     $this->overview = $_overview;
@@ -143,9 +148,9 @@ class Product
   }
 
 
-    /**
+  /**
    * Get the value of inStock
-   */ 
+   */
   public function getInStock()
   {
     return $this->inStock;
@@ -155,11 +160,11 @@ class Product
    * Set the value of inStock
    *
    * @return  self
-   */ 
+   */
   public function setInStock()
   {
 
-    if($this->qta >0){
+    if ($this->qta > 0) {
       $this->inStock = true;
     }
     return $this;
@@ -168,7 +173,7 @@ class Product
 
   /**
    * Get the value of qta
-   */ 
+   */
   public function getQta()
   {
     return $this->qta;
@@ -178,7 +183,7 @@ class Product
    * Set the value of qta
    *
    * @return  self
-   */ 
+   */
   public function setQta($_qta)
   {
     $this->qta = $_qta;
@@ -189,7 +194,7 @@ class Product
 
   /**
    * Get the value of price
-   */ 
+   */
   public function getPrice()
   {
     return $this->price;
@@ -199,17 +204,17 @@ class Product
    * Set the value of price
    *
    * @return  self
-   */ 
+   */
   public function setPrice($_price)
   {
-    $this->price = sprintf("%.2f",$_price);
+    $this->price = sprintf("%.2f", $_price);
 
     return $this;
   }
 
   /**
    * Get the value of finalprice
-   */ 
+   */
   public function getFinalprice()
   {
     return $this->finalprice;
@@ -219,17 +224,17 @@ class Product
    * Set the value of finalprice
    *
    * @return  self
-   */ 
+   */
   public function setFinalprice()
   {
-    $this->finalprice = ( $this->price / 100 )*(100-$this->discountPercentage);
+    $this->finalprice = ($this->price / 100) * (100 - $this->discountPercentage);
     $this->finalprice = sprintf("%.2f", $this->finalprice);
     return $this;
   }
 
   /**
    * Get the value of discountPercentage
-   */ 
+   */
   public function getDiscountPercentage()
   {
     return $this->discountPercentage;
@@ -239,7 +244,7 @@ class Product
    * Set the value of discountPercentage
    *
    * @return  self
-   */ 
+   */
   public function setDiscountPercentage($_discountPercentage)
   {
     $this->discountPercentage = intval($_discountPercentage);
@@ -249,7 +254,7 @@ class Product
 
   /**
    * Get the value of buied
-   */ 
+   */
   public function getBuied()
   {
     return $this->buied;
@@ -259,10 +264,10 @@ class Product
    * Set the value of buied
    *
    * @return  self
-   */ 
+   */
   public function setBuied()
   {
-    $this->buied ++;
+    $this->buied++;
 
     return $this;
   }
@@ -271,7 +276,7 @@ class Product
 
   /**
    * Get the value of topSelled
-   */ 
+   */
   public function getTopSelled()
   {
     return $this->topSelled;
@@ -281,12 +286,12 @@ class Product
    * Set the value of topSelled
    *
    * @return  self
-   */ 
+   */
   public function setTopSelled($_productsList)
   {
-   // $this->topSelled = ciclo su array dei prodotti, media di vendita dei prodotti;
-   //if($this->buied>della media){$this->TopSelled= true};
-   //va evocata ad ogni ordine
+    // $this->topSelled = ciclo su array dei prodotti, media di vendita dei prodotti;
+    //if($this->buied>della media){$this->TopSelled= true};
+    //va evocata ad ogni ordine
 
     return $this;
   }
@@ -294,7 +299,7 @@ class Product
 
   /**
    * Get the value of Categpry
-   */ 
+   */
   public function getCategpry()
   {
     return $this->category;
@@ -304,10 +309,30 @@ class Product
    * Set the value of Categpry
    *
    * @return  self
-   */ 
+   */
   public function setCategpry($_category)
   {
     $this->category = $_category;
+
+    return $this;
+  }
+
+  /**
+   * Get the value of id
+   */
+  public function getId()
+  {
+    return $this->id;
+  }
+
+  /**
+   * Set the value of id
+   *
+   * @return  self
+   */
+  public function setId()
+  {
+    $this->id = uniqid("product-", );
 
     return $this;
   }
