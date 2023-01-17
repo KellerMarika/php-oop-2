@@ -17,6 +17,12 @@ require_once "./Models/REgisteredUser.php";
 
 /* functions */
 require_once "encodeJsonFunction.php";
+
+
+/* api */
+$prdoductList = json_decode(file_get_contents("dbJson/stock.json"), true);
+//var_dump($prdoductList);
+
 ?>
 
 <!DOCTYPE html>
@@ -87,20 +93,62 @@ require_once "encodeJsonFunction.php";
       </div>
     </section>
 
-<div class="container">
+    <div class="container">
 
-<div class="row row-cols-5 flex-wrap h-100 mt-5">
-      <div class="col p-2" v-for="(product, i) in inStockProducts">
-        <div class="product-card rounded-1">
-
-        <img src="" alt="product.name">
+      <div class="row row-cols-5 flex-wrap h-100 mt-5">
+        <?php foreach ($prdoductList as $product) { ?>
 
 
-        </div>  
+          <div class="col p-2">
+            <div class="product-card rounded-1">
+
+              <img class="img-fluid" src="<?php echo $product["img"] ?>" alt="  <?php echo $product["name"] ?> ">
+
+              <h6 class="title ">
+                <?php echo $product["name"] ?>
+              </h6>
+              <p class="brand text-uppercase small">
+                <?php echo $product["brand"] ?>
+              </p>
+
+              <ul>
+                <li class="<?php echo ($product["inStock"]) ? "text-success" : "text-danger" ?> "> Disponibilità:
+                  <?php echo ($product["inStock"]) ? $product["inStock"] . "pezzi" : "esaurito" ?></li>
+              </ul>
+
+              <div class="d-flex align-items-center justify-content-between"> 
+              <span
+                  class=' "small" <?php echo ($product["discountPercentage"]) ? "text-decoration-line-through" : "" ?>'>
+                <?php echo ($product["price"]). "€";  ?>
+              </span>
+
+              <?php echo  ($product["discountPercentage"]) ? '<span class="text-danger fw-bolder fs-5">'.  $product["finalprice"] .'€</span>':"" ?>
+
+              <?php echo  ($product["discountPercentage"]) ? '<span class="text-light fw-bolder rounded-5 bg-danger px-1"> - '.  $product["discountPercentage"] .'%</span>':"" ?>
+              </div>
+
+              <div class="card-options d-flex justify-content-between">
+              <button><i class="fa-solid fa-heart"></i></button>
+                <button><i class="fa-solid fa-cart-plus"></i></button>
+              </div>
+
+             
+ 
+
+
+
+
+
+
+
+
+
+            </div>
+          </div>
+        <?php } ?>
       </div>
     </div>
-</div>
-    
+
 
 
 
@@ -145,8 +193,9 @@ require_once "encodeJsonFunction.php";
   .title-nav {
     font-size: 3rem;
   }
-.col{
-}
+
+  .col {}
+
   .product-card {
     aspect-ratio: 1/1.2
   }
