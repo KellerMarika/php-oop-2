@@ -43,8 +43,11 @@ require_once "encodeJsonFunction.php";
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 
-<body class=" bg-light text-light ">
+<body class=" bg-light ">
   <div id="app">
+
+
+
 
 
     <section id="header" class="bg-dark">
@@ -68,7 +71,7 @@ require_once "encodeJsonFunction.php";
             <h1 class="title-nav text-dark "> Pet Store</h1>
           </div>
         </div>
-     
+
 
         <!--componente classi  -->
 
@@ -76,36 +79,37 @@ require_once "encodeJsonFunction.php";
 
           <li class="list-unstyled flex-fill"> <button class="d-inline-block p-2 px-5 fs-4 text-dark fw-bolder"
                 href="login.php">cane</button></li>
-<!-- ciclo sulle voci dell'array -->
+          <!-- ciclo sulle voci dell'array -->
 
           <li class="list-unstyled flex-fill "><button class="d-inline-block p-2 px-5 fs-4 text-dark fw-bolder"
                 href="wishlist.php">gatto</button></li>
         </ul>
-
-
- 
-
-
       </div>
-
     </section>
 
+<div class="container">
+
+<div class="row row-cols-5 flex-wrap h-100 mt-5">
+      <div class="col p-2" v-for="(product, i) in inStockProducts">
+        <div class="product-card rounded-1">
+
+        <img src="" alt="product.name">
+
+
+        </div>  
+      </div>
+    </div>
+</div>
+    
+
+
+
 
 
 
 
   </div>
-
-
-
-  <?php ?>
-
-  </div>
-
   <script type="module" src="js/main.js"></script>
-
-
-
 </body>
 
 </html>
@@ -140,5 +144,10 @@ require_once "encodeJsonFunction.php";
 
   .title-nav {
     font-size: 3rem;
+  }
+.col{
+}
+  .product-card {
+    aspect-ratio: 1/1.2
   }
 </style>
