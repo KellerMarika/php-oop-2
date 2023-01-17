@@ -22,6 +22,8 @@ require_once "encodeJsonFunction.php";
 require_once "objectsArrays.php";
 
 
+var_dump($stockList[2]);
+var_dump($stockList[2]->getAssociativeArray());
 /* api */
 $prdoductList = json_decode(file_get_contents("dbJson/stock.json"), true);
 //var_dump($prdoductList);
@@ -103,7 +105,7 @@ $prdoductList = json_decode(file_get_contents("dbJson/stock.json"), true);
 
           <div class="col p-2">
             <div class="product-card rounded-1 position-relative">
-              <div class="poster-card position-absolute top-0 start-0 end-0 bottom-0 w-100 h-100">
+              <div class="poster-card position-absolute top-0 start-0 end-0 bottom-0 w-100 h-100 d-none">
                 <div class="position-relative">
                   <img class="img-fluid" src="<?php echo $product->getImg() ?>"
                       alt="  <?php echo $product->getName() ?> ">
@@ -159,8 +161,37 @@ $prdoductList = json_decode(file_get_contents("dbJson/stock.json"), true);
                   <?php echo $product->getOverview() ?>
                 </p>
 
+                <div class="type-infos">
+                  <?php if (method_exists($product, "getTypeName")) { ?>
+                    <i
 
-        
+                        class='position-absolute end-0 bottom-0 fa-solid p-2 <?php echo ($product->getTypeIcon()) ?>'></i>
+                    <ul>
+                      <?php
+                      if ($product->getTypeName() === "Food") { ?>
+                        <li><?php echo $product->getConsistency()?> </li>
+                        <li><?php echo $product->getTaste()?> </li>
+                        <li><?php echo $product->getSize()?> </li>
+                        <li><?php echo $product->getPuppy()?> </li>
+                        <li><?php echo $product->getMonoprotein()?> </li>
+                        <li><?php echo $product->getGrainfree()?> </li>
+                        <li><?php echo $product->getDiet()?> </li>
+
+
+
+
+
+
+                      </ul>
+
+
+                    <?php } ?>
+
+
+                  <?php } ?>
+
+                </div>
+
 
               </div>
 

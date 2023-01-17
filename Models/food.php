@@ -41,12 +41,7 @@ class Food extends Product
     if ($_diet) {
       $this->setDiet($_diet);
     }
-
-
-
-
   }
-
 
   /*** FUNCTION GET ASSOCIATIVE ARRAY ***/
   public function getAssociativeArray()
@@ -59,6 +54,8 @@ class Food extends Product
       $associatedArray[$key] = $value;
     }
     return $associatedArray;
+
+
   }
 
   /*** GETTER & SETTER ***/
@@ -228,7 +225,7 @@ class Food extends Product
 
   /**
    * Get the value of typeIcon
-   */ 
+   */
   public function getTypeIcon()
   {
     return $this->typeIcon;
@@ -238,10 +235,30 @@ class Food extends Product
    * Set the value of typeIcon
    *
    * @return  self
-   */ 
+   */
   public function setTypeIcon($typeIcon)
   {
     $this->typeIcon = $typeIcon;
+
+    return $this;
+  }
+
+  /**
+   * Get the value of typeName
+   */
+  public function getTypeName()
+  {
+    return $this->typeName;
+  }
+
+  /**
+   * Set the value of typeName
+   *
+   * @return  self
+   */
+  public function setTypeName($typeName)
+  {
+    $this->typeName = $typeName;
 
     return $this;
   }
