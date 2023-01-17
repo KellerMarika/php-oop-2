@@ -1,6 +1,6 @@
 <?php
-require_once __DIR__ . "/Category.php";
-class Toy extends Category
+require_once __DIR__ . "/Product.php";
+class Toy extends Product
 {
   protected string $typeName = "Toy";
   protected string $typeIcon = " fa-baseball";
@@ -13,10 +13,10 @@ class Toy extends Category
 
 
 
-  function __construct($_name, $_img, $_brand, $_overview, $_qta, $_price, $_discountPercentage, $_categoryName, $_categoryIcon,$_material,$_size,$_puppy,$_training,$_problemSolving)
+  function __construct($_name, $_img, $_brand, $_overview, $_qta, $_price, $_discountPercentage, $_category, $_material,$_size,$_puppy,$_training,$_problemSolving)
   {
 
-    parent::__construct($_name, $_img, $_brand, $_overview, $_qta, $_price, $_discountPercentage,$_categoryName,$_categoryIcon);
+    parent::__construct($_name, $_img, $_brand, $_overview, $_qta, $_price, $_discountPercentage,$_category);
 
     if($_material){$this->setMaterial($_material);}
     if($_size){$this->setSize($_size);}

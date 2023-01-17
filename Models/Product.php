@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__ . "/Category.php";
 class Product
 {
 
@@ -13,11 +14,12 @@ class Product
   protected $finalprice;
   protected int $buied=0;
   protected bool $topSelled = false;
+  protected Category $category;
   
 
 
 /* COSTRUTTORE */
-  function __construct($_name,$_img,$_brand,$_overview,$_qta,$_price,$_discountPercentage)
+  function __construct($_name,$_img,$_brand,$_overview,$_qta,$_price,$_discountPercentage, $_category)
   {
   $this->name=$_name ;
   $this->img = $_img;
@@ -28,6 +30,7 @@ class Product
   $this->setPrice($_price);
   $this->discountPercentage = $_discountPercentage;
   $this->setFinalprice();
+    $this->setCategpry($_category);
   }
   /**** METHODS ****/  
 
@@ -288,6 +291,26 @@ class Product
     return $this;
   }
 
+
+  /**
+   * Get the value of Categpry
+   */ 
+  public function getCategpry()
+  {
+    return $this->category;
+  }
+
+  /**
+   * Set the value of Categpry
+   *
+   * @return  self
+   */ 
+  public function setCategpry($_category)
+  {
+    $this->category = $_category;
+
+    return $this;
+  }
 }
 
 ?>

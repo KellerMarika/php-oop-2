@@ -1,6 +1,6 @@
 <?php
-require_once __DIR__ . "/Category.php";
-class Food extends Category
+require_once __DIR__ . "/Product.php";
+class Food extends Product
 {
   protected string $typeName = "Food";
   protected string $typeIcon = "fa-bowl-food";
@@ -15,10 +15,10 @@ class Food extends Category
 
 
 
-  function __construct($_name, $_img, $_brand, $_overview, $_qta, $_price, $_discountPercentage, $_categoryName, $_categoryIcon, $_consistency = null, $_taste = null, $_size = null, $_puppy = null, $_monoprotein = null, $_grainfree = null, $_diet = null)
+  function __construct($_name, $_img, $_brand, $_overview, $_qta, $_price, $_discountPercentage, $_category, $_consistency = null, $_taste = null, $_size = null, $_puppy = null, $_monoprotein = null, $_grainfree = null, $_diet = null)
   {
 
-    parent::__construct($_name, $_img, $_brand, $_overview, $_qta, $_price, $_discountPercentage, $_categoryName, $_categoryIcon);
+    parent::__construct($_name, $_img, $_brand, $_overview, $_qta, $_price, $_discountPercentage, $_category);
 
     if ($_consistency) {
       $this->setConsistency($_consistency);

@@ -1,71 +1,53 @@
 <?php
-require_once __DIR__ . "/Product.php";
-class Category extends Product
-{
-  protected string $categoryName; //"gatto"||"cane"
-  protected string $CategoryIcon;
+class Category {
 
-  function __construct($_name,$_img,$_brand,$_overview,$_qta,$_price,$_discountPercentage, $_categoryName,$_categoryIcon)
-  {
+  protected string $name = "All";
+  protected string $icon;
 
-    parent::__construct($_name,$_img,$_brand,$_overview,$_qta,$_price,$_discountPercentage);
-    $this->setCategoryName($_categoryName);
-    $this->setCategoryIcon($_categoryIcon);
+  function __construct($_name,$_icon){
+
+    $this->setName($_name);
+    $this->setIcon($_icon);
+
+    
   }
-
-
-  /*** FUNCTION GET ASSOCIATIVE ARRAY ***/
-  public function getAssociativeArray()
-  {
-
-    $associatedArray = [];
-    foreach ($this as $key => $value) {
-
-      //var_dump($key, $value);
-      $associatedArray[$key] = $value;
-    }
-    return $associatedArray;
-  }
-
-/*** GETTER & SETTER ***/
-
 
   /**
-   * Get the value of categoryName
+   * Get the value of name
    */ 
-  public function getCategoryName()
+  public function getName()
   {
-    return $this->categoryName;
+    return $this->name;
   }
 
   /**
-   * Set the value of categoryName
+   * Set the value of name
    *
    * @return  self
    */ 
-  public function setCategoryName($_categoryName)
+  public function setName($name)
   {
-    $this->categoryName = $_categoryName;
+    $this->name = $name;
 
     return $this;
   }
 
   /**
-   * Get the value of CategoryIcon
+   * Get the value of icon
    */ 
-  public function getCategoryIcon()
+  public function getIcon()
   {
-    return $this->CategoryIcon;
+    return $this->icon;
   }
 
   /**
-   * Set the value of CategoryIcon
+   * Set the value of icon
    *
    * @return  self
    */ 
-  public function setCategoryIcon($_CategoryIcon)
+  public function setIcon($icon)
   {
-    $this->CategoryIcon = $_CategoryIcon;
+    $this->icon = $icon;
 
     return $this;
   }

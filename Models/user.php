@@ -7,7 +7,7 @@ class User
   protected string $surname;
   protected string $email;
   protected array $birthDate;
-  protected array $address;
+  protected  $address;
 
   protected array $cart = [];
   protected array $orders = [];

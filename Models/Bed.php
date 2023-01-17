@@ -1,6 +1,6 @@
 <?php
-require_once __DIR__ . "/Category.php";
-class Bed extends Category
+require_once __DIR__ . "/Product.php";
+class Bed extends Product
 {
   protected string $typeName = "Bed";
   protected string $typeIcon = " fa-couch";
@@ -14,10 +14,10 @@ class Bed extends Category
 
 
 
-  function __construct($_name, $_img, $_brand, $_overview, $_qta, $_price, $_discountPercentage, $_categoryName, $_categoryIcon,$_size, $_color=null, $_material=null,  $_outdoor=null, $_summery=null)
+  function __construct($_name, $_img, $_brand, $_overview, $_qta, $_price, $_discountPercentage, $_category,$_size, $_color=null, $_material=null,  $_outdoor=null, $_summery=null)
   {
 
-    parent::__construct($_name, $_img, $_brand, $_overview, $_qta, $_price, $_discountPercentage, $_categoryName, $_categoryIcon);
+    parent::__construct($_name, $_img, $_brand, $_overview, $_qta, $_price, $_discountPercentage,$_category);
 
     if($_color){
       $this->setColor($_color);
