@@ -41,12 +41,16 @@ class Bed extends Product
   /*** FUNCTION GET ASSOCIATIVE ARRAY ***/
   public function getAssociativeArray()
   {
-
     $associatedArray = [];
     foreach ($this as $key => $value) {
 
-      //var_dump($key, $value);
-      $associatedArray[$key] = $value;
+      if (is_object($value)) {
+
+        $associatedArray[$key] = $value->getAssociativeArray();
+      } else {
+        $associatedArray[$key] = $value;
+
+      }
     }
     return $associatedArray;
   }

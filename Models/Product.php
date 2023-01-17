@@ -324,48 +324,19 @@ class Product
   /*** FUNCTION GET ASSOCIATIVE ARRAY ***/
   public function getAssociativeArray()
   {
-    $a = $this;
-    var_dump("......................");
-/*     var_dump($a);
-    var_dump($a->getCategory());
-    var_dump($a->getCategory()->getAssociativeArray()); */
-    $b = $a->getCategory()->getAssociativeArray();
-    var_dump($b);
-    var_dump(".......................");
-
-    
     $associatedArray = [];
     foreach ($this as $key => $value) {
- 
-      
-      if($key ==='category' && is_object($value)){
-        var_dump("per la PEPPETTA");
-        var_dump($key, $value);
-        var_dump($value->getAssociativeArray());
-        $associatedArray[$key] = $value->getAssociativeArray();
-      }else{
-        var_dump(".....");
-        $associatedArray[$key] = $value;
-        
-      }
-      //var_dump($key, $value);
-     
-    /*  */
-    
 
+      if (is_object($value)) {
+
+        $associatedArray[$key] = $value->getAssociativeArray();
+      } else {
+        $associatedArray[$key] = $value;
+
+      }
     }
     return $associatedArray;
   }
-
 }
-$categories = [];
-
-$categories["cat"] = new Category("cat", "fa-cat");
-$categories["dog"] = new Category("dog", "fa-dog");
-
-$a = new Product("Salviette Detergenti Multiuso", "https://www.biogenya.it/wp-content/uploads/2020/07/Pet-Pharma-occhi-musetto_048030_800x800.jpg", "Inodorina", "Le Salviette Detergenti Multiuso Lovedì sono la soluzione ideale per detergere, deodorare e profumare il tuo cane ", "50", "2.90", "0", $categories["cat"]);
-
-var_dump($a->getAssociativeArray());
-
 
 ?>

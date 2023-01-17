@@ -1,7 +1,7 @@
 <?php
 /* ini_set('xdebug.default_enable', false);
 ini_set('html_errors', false);
- */
+*/
 
 /* prodicts */
 require_once "./Models/Product.php";
@@ -108,7 +108,7 @@ $prdoductList = json_decode(file_get_contents("dbJson/stock.json"), true);
                   <img class="img-fluid" src="<?php echo $product->getImg() ?>"
                       alt="  <?php echo $product->getName() ?> ">
                   <i
-                      class='position-absolute end-0 bottom-0 fa-solid p-2 <?php echo ($product->getCategory()->getIcon()) ?? "" ?>'></i>
+                      class='position-absolute end-0 bottom-0 fa-solid p-2 <?php echo ($product->getCategpry()->getIcon()) ?? "" ?>'></i>
 
                 </div>
 
