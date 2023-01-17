@@ -1,9 +1,9 @@
 <?php
 /* ini_set('xdebug.default_enable', false);
 ini_set('html_errors', false);
- */
+*/
 
- /* prodicts */
+/* prodicts */
 require_once "./Models/Product.php";
 require_once "./Models/Category.php";
 require_once "./Models/Food.php";
@@ -17,21 +17,6 @@ require_once "./Models/REgisteredUser.php";
 
 /* functions */
 require_once "encodeJsonFunction.php";
-
-
-
-$product = new Product("trippa essiccata","https://shop-cdn-m.mediazs.com/bilder/rocco/trippa/verde/di/manzo/7/800/rocco_driedchews_greentripe_500g_1000x1000_7.jpg","rocco","snack appetitoso e puzzolente","3","100","20");
-var_dump($product);
-$product = new Category("trippa essiccata","https://shop-cdn-m.mediazs.com/bilder/rocco/trippa/verde/di/manzo/7/800/rocco_driedchews_greentripe_500g_1000x1000_7.jpg","rocco","snack appetitoso e puzzolente","3","100","20","gatto","fa-cat");
-var_dump($product);
-$product = new Food("trippa essiccata","https://shop-cdn-m.mediazs.com/bilder/rocco/trippa/verde/di/manzo/7/800/rocco_driedchews_greentripe_500g_1000x1000_7.jpg","rocco","snack appetitoso e puzzolente","3","100","20","cane","fa-dog","masticativo","horse",null,null,true,true);
-var_dump($product);
-$product = new Toy("Dog Activity Solitaire","https://arcaplanet.vtexassets.com/arquivos/ids/220073/trixie-dog-activity-cane-solitaire.jpg?v=1759972606","trixie","Dog activity Solitaire è un gioco d'intelligenza per il tuo cane","8",14.70,35,"cane","fa-dog",null,"L",null,null,true);
-var_dump($product);
-
-$product = new Bed("Materasso Royal Blu","https://www.amershamdesigns.co.uk/uploads/images/products/large/amershamdesigns_lordlou_lordlougeorgeroyalbluevelvetpetbed_1488802086George_pile_blue1450x450.png","I Morbidosi","Morbida cuccia per cani ideale per il riposo del tuo amico","2",59.90,15,"cane","fa-dog","S","bue");
-var_dump($product);
-
 ?>
 
 <!DOCTYPE html>
@@ -58,21 +43,102 @@ var_dump($product);
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 
-<body class=" bg-black text-light ">
+<body class=" bg-light text-light ">
   <div id="app">
 
-<?php  ?>
-    
+
+    <section id="header" class="bg-dark">
+      <!-- componente user-nav -->
+      <div id="user-nav" class="black-nav">
+        <div class="container">
+          <ul class="list-unstyled d-flex gap-5 m-0 align-items-center">
+            <li class="list-unstyled"> <a class="d-inline-block p-2" href="login.php">Login</a></li>
+            <li class="list-unstyled"><a class="d-inline-block p-2" href="wishlist.php">wishlist</a></li>
+            <li class="list-unstyled"><a class="d-inline-block p-2" href="cart.php">Cart</a></li>
+          </ul>
+        </div>
+    </section>
+
+    <!-- componente product-nav -->
+    <section class="bg-green">
+      <div class="d-flex container justify-content-between">
+        <div id="products-nav" class="green-nav d-flex">
+          <div class="d-flex align-items-end">
+            <img src="img/pet-shop-logo.webp" alt="pet-shop-logo" class="logo">
+            <h1 class="title-nav text-dark "> Pet Store</h1>
+          </div>
+        </div>
+     
+
+        <!--componente classi  -->
+
+        <ul class="list-unstyled  d-flex m-0 align-items-center align-self-end mb-3 justify-content-between">
+
+          <li class="list-unstyled flex-fill"> <button class="d-inline-block p-2 px-5 fs-4 text-dark fw-bolder"
+                href="login.php">cane</button></li>
+<!-- ciclo sulle voci dell'array -->
+
+          <li class="list-unstyled flex-fill "><button class="d-inline-block p-2 px-5 fs-4 text-dark fw-bolder"
+                href="wishlist.php">gatto</button></li>
+        </ul>
+
+
+ 
+
+
+      </div>
+
+    </section>
+
+
+
+
+
+  </div>
+
+
+
+  <?php ?>
+
   </div>
 
   <script type="module" src="js/main.js"></script>
-  
+
 
 
 </body>
 
 </html>
 
-<style lang="scss">
-  
+<style lang="css">
+  * {
+    border: 1px solid red
+  }
+
+  a {
+    text-decoration: none;
+    color: white;
+  }
+
+  a:hover {
+    color: greenyellow;
+  }
+
+  #user-nav {
+    height: 50px;
+  }
+
+  .bg-green {
+    height: 150px;
+    background-color: #ceff9e;
+    box-shadow: 5px 0px 10px grey;
+  }
+
+  .logo {
+    transform: scale(75%);
+  }
+
+  .title-nav {
+    font-size: 3rem;
+  }
 </style>

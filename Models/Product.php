@@ -8,9 +8,9 @@ class Product
   protected string $overview;
   protected int $qta = 0;
   protected bool $inStock = false;
-  protected float $price;
+  protected $price;
   protected float $discountPercentage = 0.0;
-  protected float $finalprice;
+  protected $finalprice;
   protected int $buied=0;
   protected bool $topSelled = false;
   
@@ -220,7 +220,7 @@ class Product
   public function setFinalprice()
   {
     $this->finalprice = ( $this->price / 100 )*(100-$this->discountPercentage);
-
+    $this->finalprice = sprintf("%.2f", $this->finalprice);
     return $this;
   }
 
