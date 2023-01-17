@@ -100,40 +100,98 @@ $prdoductList = json_decode(file_get_contents("dbJson/stock.json"), true);
 
 
           <div class="col p-2">
-            <div class="product-card rounded-1">
+            <div class="product-card rounded-1 position-relative">
+              <div class="poster-card position-absolute top-0 start-0 end-0 bottom-0 w-100 h-100">
+                <div class="position-relative">
+                  <img class="img-fluid" src="<?php echo $product["img"] ?>" alt="  <?php echo $product["name"] ?> ">
+                  <i
+                      class='position-absolute end-0 bottom-0 fa-solid p-2 <?php echo ($product["CategoryIcon"]) ?? "" ?>'></i>
 
-              <img class="img-fluid" src="<?php echo $product["img"] ?>" alt="  <?php echo $product["name"] ?> ">
+                </div>
 
-              <h6 class="title ">
-                <?php echo $product["name"] ?>
-              </h6>
-              <p class="brand text-uppercase small">
-                <?php echo $product["brand"] ?>
-              </p>
+                <h5 class="title ">
+                  <?php echo $product["name"] ?>
+                </h5>
 
-              <ul>
-                <li class="<?php echo ($product["inStock"]) ? "text-success" : "text-danger" ?> "> Disponibilità:
-                  <?php echo ($product["inStock"]) ? $product["inStock"] . "pezzi" : "esaurito" ?></li>
-              </ul>
+                <div class="card-infos px-2">
+                  <p class="brand text-uppercase small ">
+                    <?php echo $product["brand"] ?>
+                  </p>
 
-              <div class="d-flex align-items-center justify-content-between"> 
-              <span
-                  class=' "small" <?php echo ($product["discountPercentage"]) ? "text-decoration-line-through" : "" ?>'>
-                <?php echo ($product["price"]). "€";  ?>
-              </span>
+                  <ul>
+                    <li class="small <?php echo ($product["inStock"]) ? "text-success" : "text-danger" ?> ">
+                      Disponibilità:
+                      <?php echo ($product["inStock"]) ? $product["inStock"] . "pezzi" : "esaurito" ?></li>
+                  </ul>
 
-              <?php echo  ($product["discountPercentage"]) ? '<span class="text-danger fw-bolder fs-5">'.  $product["finalprice"] .'€</span>':"" ?>
+                  <div class="d-flex align-items-center justify-content-between py-2">
+                    <span
+                        class=' "small" <?php echo ($product["discountPercentage"]) ? "text-decoration-line-through" : "" ?>'>
+                      <?php echo ($product["price"]) . "€"; ?>
+                    </span>
 
-              <?php echo  ($product["discountPercentage"]) ? '<span class="text-light fw-bolder rounded-5 bg-danger px-1"> - '.  $product["discountPercentage"] .'%</span>':"" ?>
+                    <?php echo ($product["discountPercentage"]) ? '<span class="text-danger fw-bolder fs-5">' . $product["finalprice"] . '€</span>' : "" ?>
+
+                    <?php echo ($product["discountPercentage"]) ? '<span class="text-light fw-bolder rounded-5 bg-danger px-1"> - ' . $product["discountPercentage"] . '%</span>' : "" ?>
+                  </div>
+
+                  <div class="card-options d-flex justify-content-between">
+                    <button><i class="fa-solid fa-heart"></i></button>
+                    <button><i class="fa-solid fa-cart-plus"></i></button>
+                  </div>
+                </div>
+
               </div>
 
-              <div class="card-options d-flex justify-content-between">
-              <button><i class="fa-solid fa-heart"></i></button>
-                <button><i class="fa-solid fa-cart-plus"></i></button>
+
+              <div class="card-info position-absolute bg-light align-items-baseline">
+                <div class="d-flex">
+                  <i class=' fa-solid  <?php echo ($product["typeIcon"]) ?? "" ?>'></i>
+                  <h5 class="title ps-3 ">
+                    <?php echo $product["name"] ?>
+                  </h5>
+                </div>
+
+                <p>
+                  <?php echo $product["overview"] ?>
+                </p>
+
+
+                <?php if ($product["typeName"]) { ?>
+
+
+                  <?php if ($product["typeName"] === "Food") { ?>
+
+                    <div class="<?php echo $product["typeName"] ?>">
+
+                      <span>size: <?php $product["size"] ?></span>
+                    </div>
+
+                  <?php } else if ($product["typeName"] === "Toy") { ?>
+
+                      <div class="<?php echo $product["typeName"] ?>">
+                        <span>size: <?php $product["size"] ?></span>
+
+                      </div>
+
+                  <?php } else if ($product["typeName"] === "Bed") { ?>
+
+                        <div class="<?php echo $product["typeName"] ?>">
+                          <span>size: <?php $product["size"] ?></span>
+
+
+                        </div>
+                  <?php } ?>
+                <?php } else { ?>
+
+<div></div>
+                <?php } ?>
+
               </div>
 
-             
- 
+
+
+
 
 
 
@@ -197,6 +255,16 @@ $prdoductList = json_decode(file_get_contents("dbJson/stock.json"), true);
   .col {}
 
   .product-card {
-    aspect-ratio: 1/1.2
+    aspect-ratio: 1/2;
+
+  }
+
+  .poster-card {
+    transition: all .3s;
+  }
+
+  .poster-card:hover {
+    opacity: 0;
+    filter: blur(10px);
   }
 </style>
