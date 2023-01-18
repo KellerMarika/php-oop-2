@@ -38,16 +38,30 @@ class Product
 
   /**** METHODS ****/
 
-  public function jsonSerialize()
-  {
-    return get_object_vars($this);
-  }
+    /*** FUNCTION GET ASSOCIATIVE ARRAY ***/
+    public function getAssociativeArray()
+    {
+      $associatedArray = [];
+      foreach ($this as $key => $value) {
+  
+        if (is_object($value)) {
+  
+          $associatedArray[$key] = $value->getAssociativeArray();
+        } else {
+          $associatedArray[$key] = $value;
+  
+        }
+      }
+      return $associatedArray;
+    }
+
   public function decrementQta()
   {
     $this->qta--;
 
     return $this;
   }
+
 
   /*** GETTER & SETTER ***/
 
@@ -321,22 +335,7 @@ class Product
     return $this;
   }
 
-  /*** FUNCTION GET ASSOCIATIVE ARRAY ***/
-  public function getAssociativeArray()
-  {
-    $associatedArray = [];
-    foreach ($this as $key => $value) {
 
-      if (is_object($value)) {
-
-        $associatedArray[$key] = $value->getAssociativeArray();
-      } else {
-        $associatedArray[$key] = $value;
-
-      }
-    }
-    return $associatedArray;
-  }
 }
 
 ?>

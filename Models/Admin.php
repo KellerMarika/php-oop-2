@@ -1,24 +1,23 @@
 <?php
-require_once __DIR__ . "/User.php";
+require_once __DIR__ . "/RegisteredUser.php";
 
-class RegisteredUser extends User
+class Admin extends RegisteredUser
 {
-
-  private string $userName;
-  private string $password;
-  private int $ReservedtotalDiscount = 20;
-  private array $wishlist=[];
-
+  private array $toReorderlist=[];
+  //occorrerebbe mettere a db un array dei fornitori (array associativo indirizzi ecc) x smistare i prodotti in più ordini a fornitore ma non allarghiamoci
+  
 
   function __construct($_name, $_surname, $_email, $_birthDate, $_address, $_password)
   {
 
-    parent::__construct($_name, $_surname, $_email, $_birthDate, $_address);
+    parent::__construct($_name, $_surname, $_email, $_birthDate, $_address, $_password);
     
-
-    $this->setPassword($_password);
-    $this->userName = ($this->getFullName());
   }
+
+/* FUNZIONE CREATE OBJECT (WITH CLASS) FROM AN ASSOCIATIVE ARRAY */
+
+
+
 
 
     /*** FUNCTION GET ASSOCIATIVE ARRAY ***/

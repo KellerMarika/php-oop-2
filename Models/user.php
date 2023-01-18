@@ -3,42 +3,49 @@
 //require_once "../encodeJsonFunction.php";
 class User
 {
+  private string $id;
   protected string $name;
   protected string $surname;
   protected string $email;
   protected array $birthDate;
   protected  $address;
 
-  protected array $cart = [];
-  protected array $orders = [];
+  protected array $cart = [];//pusho array associativi degli oggetti al click del bottone cart
+  protected array $orders = [];//pusho id ordine
+
+
+
 
 
   /* COSTRUTTORE */
   function __construct($_name, $_surname, $_email, $_birthDate, $_address)
   {
-
+    $this->setId();
     $this->name = $_name;
     $this->surname = $_surname;
     $this->email = $_email;
     $this->setBirth_date($_birthDate);
     $this->setAddress($_address);
 
+
   }
 
-  /*** FUNCTION GET ASSOCIATIVE ARRAY ***/
-  public function getAssociativeArray()
-  {
-
-    $associatedArray = [];
-    foreach ($this as $key => $value) {
-
-      //var_dump($key, $value);
-      $associatedArray[$key] = $value;
+    /*** FUNCTION GET ASSOCIATIVE ARRAY ***/
+    public function getAssociativeArray()
+    {
+      $associatedArray = [];
+      foreach ($this as $key => $value) {
+  
+        if (is_object($value)) {
+  
+          $associatedArray[$key] = $value->getAssociativeArray();
+        } else {
+          $associatedArray[$key] = $value;
+  
+        }
+      }
+      return $associatedArray;
     }
-    return $associatedArray;
-  }
-
-
 
 
 
@@ -49,6 +56,31 @@ class User
   }
 
   /*** GETTER & SETTER ***/
+
+
+    /**
+   * Get the value of cart
+   */
+  public function getCart()
+  {
+    return $this->cart;
+  }
+
+  /**
+   * Set the value of cart
+   *
+   * @return  self
+   */
+  public function setCart($_jsonCart) 
+
+  {
+
+
+    $this->cart= $_jsonCart;
+
+    return $this;
+  }
+
 
   /**
    * Get the value of name
@@ -173,22 +205,21 @@ class User
   }
 
   /**
-   * Get the value of cart
-   */
-  public function getCart()
+   * Get the value of id
+   */ 
+  public function getId()
   {
-    return $this->cart;
+    return $this->id;
   }
 
   /**
-   * Set the value of cart
+   * Set the value of id
    *
    * @return  self
-   */
-  public function setCart($_cartProduct) //al click sul pulsante add to cart
-
+   */ 
+  public function setId()
   {
-    array_push($this->cart, $_cartProduct);
+    $this->id = uniqid("user-");
 
     return $this;
   }

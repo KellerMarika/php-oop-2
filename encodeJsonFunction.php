@@ -1,6 +1,5 @@
 <?php
 
-$a = 2;
 /**FUNZIONE GENERICA ENCODE JSON *****************************
  * 
  * $arrayAssociativo array recuperato dalla funzione interna della classe
