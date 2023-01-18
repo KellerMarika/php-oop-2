@@ -1,7 +1,7 @@
 <?php
 /* ini_set('xdebug.default_enable', false);
 ini_set('html_errors', false);
- */
+*/
 
 /* prodicts */
 require_once "./Models/Product.php";
@@ -98,63 +98,61 @@ $prdoductList = json_decode(file_get_contents("dbJson/stock.json"), true);
 
     <div class="container">
 
-      <div class="row row-cols-5 flex-wrap h-100 mt-5">
+      <div class="row row-cols-3 flex-wrap h-100 mt-5">
         <?php foreach ($stockList as $i => $product) { ?>
 
           <div class="col p-2">
-            <div class="product-card rounded-1 position-relative">
-              <div class="poster-card position-absolute top-0 start-0 end-0 bottom-0 w-100 h-100 d-none">
-                <div class="position-relative">
+            <div class="product-card rounded-2 d-flex p-3">
+              <div class="poster-card h-100  ">
+                <div class=" img-container position-relative overflow-hidden">
                   <img class="img-fluid" src="<?php echo $product->getImg() ?>"
                       alt="  <?php echo $product->getName() ?> ">
                   <i
-                      class='position-absolute end-0 bottom-0 fa-solid p-2 <?php echo ($product->getCategory()->getIcon()) ?? "" ?>'></i>
-
+                      class='position-absolute start-0 top-0 fa-solid p-2 <?php echo ($product->getCategory()->getIcon()) ?? "" ?>'></i>
                 </div>
 
-                <h5 class="title ">
-                  <?php echo $product->getName() ?>
-                </h5>
 
-                <div class="card-infos px-2">
-                  <p class="brand text-uppercase small ">
-                    <?php echo $product->getBrand() ?>
-                  </p>
 
-                  <ul>
-                    <li class="small <?php echo ($product->getInStock()) ? "text-success" : "text-danger" ?> ">
-                      Disponibilità:
-                      <?php echo ($product->getInStock()) ? $product->getInStock() . "pezzi" : "esaurito" ?></li>
-                  </ul>
+                <div class="card-infos p-2 text-center">
 
-                  <div class="d-flex align-items-center justify-content-between py-2">
-                    <span
-                        class=' "small" <?php echo ($product->getDiscountPercentage()) ? "text-decoration-line-through" : "" ?>'>
-                      <?php echo ($product->getPrice()) . "€"; ?>
-                    </span>
-
-                    <?php echo ($product->getDiscountPercentage()) ? '<span class="text-danger fw-bolder fs-5">' . $product->getfinalprice() . '€</span>' : "" ?>
-
-                    <?php echo ($product->getDiscountPercentage()) ? '<span class="text-light fw-bolder rounded-5 bg-danger px-1"> - ' . $product->getDiscountPercentage() . '%</span>' : "" ?>
+                  <div class="card-options  border-bottom d-flex justify-content-between  ">
+                    <button class="btn"><i class="fa-solid fa-heart"></i></button>
+                    <button class="btn"><i class="fa-solid fa-cart-plus"></i></button>
                   </div>
 
-                  <div class="card-options d-flex justify-content-between">
-                    <button><i class="fa-solid fa-heart"></i></button>
-                    <button><i class="fa-solid fa-cart-plus"></i></button>
+             
+                    <div class="small pt-2  <?php echo ($product->getInStock()) ? "text-success" : "text-danger" ?> ">
+                      Disponibilità:
+                      <?php echo ($product->getInStock()) ? $product->getInStock() . "pezzi" : "esaurito" ?></div>
+             
+
+
+                  <div class=" gap-2 py-2">
+                    <div
+                        class=' "small" <?php echo ($product->getDiscountPercentage()) ? "text-decoration-line-through " : "" ?>'>
+                      <?php echo ($product->getPrice()) . "€"; ?>
+                    </div>
+
+                    <?php echo ($product->getDiscountPercentage()) ? '<div class="text-danger fw-bolder fs-3">' . $product->getfinalprice() . '€</div>' : "" ?>
+
+                    <?php echo ($product->getDiscountPercentage()) ? '<div class="text-light fw-bolder rounded-5 bg-danger px-3 py-1 mt-2 d-inline-block"> - ' . $product->getDiscountPercentage() . '%</div>' : "" ?>
                   </div>
                 </div>
 
               </div>
 
 
-              <div class="card-info position-absolute bg-light align-items-baseline">
-                <div class="d-flex">
+              <div class="card-info h-100 bg-light align-items-baseline p-2 ps-4">
 
-                  <h5 class="title ps-3 ">
-                    <?php echo $product->getName() ?>
-                  </h5>
-                </div>
 
+                <h5 class="title ">
+                  <?php echo $product->getName() ?>
+                </h5>
+
+
+                <p class="brand text-uppercase small ">
+                  <?php echo $product->getBrand() ?>
+                </p>
                 <p>
                   <?php echo $product->getOverview() ?>
                 </p>
@@ -164,56 +162,37 @@ $prdoductList = json_decode(file_get_contents("dbJson/stock.json"), true);
                     <i
 
                         class='position-absolute end-0 bottom-0 fa-solid p-2 <?php echo ($product->getTypeIcon()) ?>'></i>
-                    <ul>
-                      <?php
-                      if ($product->getTypeName() === "Food") { 
-                        
-                /*         foreach ($product->getAssociativeArray() as $key => $value) {
-                          echo ($key);
-                          echo ($value);
-                        } */
-                        
+                    <ul class="m-0 p-0 ps-2 ">
+                      <?php if ($product->getTypeName() === "Food") {
                         ?>
+                        <li>Consistenza: <?php echo $product->getConsistency() ?? "n/d" ?> </li>
+                        <li>Gusto: <?php echo $product->getTaste() ?? " n/d" ?> </li>
+                        <li>Taglia: <?php echo $product->getSize() ?? " n/d" ?> </li>
+                        <li>Puppy: <?php echo $product->getPuppy() ? ' <i class="fa-solid fa-check text-success"></i>' : ' <i class="fa-solid fa-xmark text-danger"></i>' ?> </li>
+                        <li>Monoproteico: <?php echo $product->getMonoprotein() ? ' <i class="fa-solid fa-check text-success"></i>' : ' <i class="fa-solid fa-xmark text-danger"></i>' ?> </li>
+                        <li>Grain Free: <?php echo $product->getGrainfree() ? ' <i class="fa-solid fa-check text-success"></i>' : ' <i class="fa-solid fa-xmark text-danger"></i>' ?> </li>
+                        <li>Dietetico: <?php echo $product->getDiet() ? ' <i class="fa-solid fa-check text-success"></i>' : ' <i class="fa-solid fa-xmark text-danger"></i>' ?> </li>
 
+                      <?php } else if ($product->getTypeName() === "Toy") {
+                        ?>
+                          <li>Materiale: <?php echo $product->getMaterial() ?? " n/d" ?> </li>
+                          <li>Taglia: <?php echo $product->getSize() ?? " n/d" ?> </li>
+                          <li>Puppy: <?php echo $product->getPuppy() ? ' <i class="fa-solid fa-check text-success"></i>' : ' <i class="fa-solid fa-xmark text-danger"></i>' ?> </li>
+                          <li>Addestramento/Sport: <?php echo $product->getTraining() ? ' <i class="fa-solid fa-check text-success"></i>' : ' <i class="fa-solid fa-xmark text-danger"></i>' ?> </li>
+                          <li>Problemsolving: <?php echo $product->getProblemsolving() ? ' <i class="fa-solid fa-check text-success"></i>' : ' <i class="fa-solid fa-xmark text-danger"></i>' ?> </li>
 
-                        <li><?php echo $product->getConsistency()?> </li>
-                        <li><?php echo $product->getTaste()?> </li>
-                        <li><?php echo $product->getSize()?> </li>
-                        <li><?php echo $product->getPuppy()?> </li>
-                        <li><?php echo $product->getMonoprotein()?> </li>
-                        <li><?php echo $product->getGrainfree()?> </li>
-                        <li><?php echo $product->getDiet()?> </li>
-
-
-
-
-
-
-                      </ul>
-
-
+                      <?php } else if ($product->getTypeName() === "Bed") {
+                        ?>
+                            <li>Materiale: <?php echo $product->getMaterial() ?? " n/d" ?> </li>
+                            <li>colore: <?php echo $product->getColor() ?? " n/d" ?> </li>
+                            <li>Taglia: <?php echo $product->getSize() ?? " n/d" ?> </li>
+                            <li>Da esterno: <?php echo $product->getOutdoor() ? ' <i class="fa-solid fa-check text-success"></i>' : ' <i class="fa-solid fa-xmark text-danger"></i>' ?> </li>
+                            <li>Estivo: <?php echo $product->getSummery() ? ' <i class="fa-solid fa-check text-success"></i>' : ' <i class="fa-solid fa-xmark text-danger"></i>' ?> </li>
+                          </ul>
                     <?php } ?>
-
-
                   <?php } ?>
-
                 </div>
-
-
               </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
             </div>
           </div>
         <?php } ?>
@@ -234,8 +213,9 @@ $prdoductList = json_decode(file_get_contents("dbJson/stock.json"), true);
 </html>
 
 <style lang="css">
-  * {
-    border: 1px solid red
+  .img-container {
+    width: 210px;
+    max-height: 200px;
   }
 
   a {
@@ -268,16 +248,11 @@ $prdoductList = json_decode(file_get_contents("dbJson/stock.json"), true);
   .col {}
 
   .product-card {
-    aspect-ratio: 1/2;
-
+    aspect-ratio: 1/1;
+    box-shadow: 0px 2px 10px grey;
   }
 
   .poster-card {
-    transition: all .3s;
-  }
-
-  .poster-card:hover {
-    opacity: 0;
-    filter: blur(10px);
+    border-right: 1px solid lightgrey;
   }
 </style>
