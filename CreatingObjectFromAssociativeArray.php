@@ -1,7 +1,7 @@
 <?php
 /*  ini_set('xdebug.default_enable', false);
 ini_set('html_errors', false);
- */
+*/
 
 /* prodicts */
 require_once "./Models/Product.php";
@@ -25,6 +25,51 @@ require_once "objectsArrays.php";
 $prdoductList = json_decode(file_get_contents("dbJson/stock.json"), true);
 //var_dump($prdoductList);
 var_dump($prdoductList[0]);
+
+foreach ($prdoductList[0] as $key => $value) {
+  var_dump("KEY: " . $key);
+  //var_dump("VALUE: ".$value);
+  var_dump("VALUE-TYPE: " . gettype($value));
+
+
+  /* INPUT TYPE STRING */
+  if (gettype($value) === "string"||(str_ends_with($key, "price") || str_starts_with($key, "discount")) ) {
+
+    /* se password */
+    if ($key === "password") {
+
+      echo
+        '<label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
+        <input type="password" class="form-control" id="inputPassword" placeholder="Password">';// *2  per doppio controllo p1===p2?
+
+      /* se email */
+    } else if (str_ends_with($key, "email")){
+
+      echo
+        '<label for="'.$key.'">Email address</label>
+      <input type="email" class="form-control" id="'.$key.'" aria-describedby="'.$key.'"  name="' . $key . 'placeholder="Enter '.$key.'">';
+
+
+    } else if (str_ends_with($key, "text") || str_ends_with($key, "overview") || str_ends_with($key, "description")) {
+      echo
+        '<label for="exampleFormControlTextarea1">Example textarea</label>
+      <textarea class="form-control" id="' . $key . '"  name="' . $key . ' " placeholder="' . $key . '" rows="3"></textarea>';
+
+    } else {
+
+      echo
+        '
+      <label for="' . $key . '">Example label</label>
+    <input type="text" class="form-control" id="' . $key . ' name="' . $key . '    " placeholder="' . $key . '">';
+
+    }
+
+
+
+  }
+
+
+}
 
 ?>
 
@@ -54,9 +99,6 @@ var_dump($prdoductList[0]);
 
 <body class=" bg-light ">
   <div id="app">
-
-
-
 
 
 
